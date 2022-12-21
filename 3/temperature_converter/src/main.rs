@@ -88,9 +88,8 @@ fn transform_temperature(source_temp: Temperature, target_unit: TemperatureUnit)
 }
 
 fn get_temperature_unit_from_user() -> TemperatureUnit {
-    let source_unit : TemperatureUnit;
-
     let mut user_input = String::new();
+
     loop {
         user_input.clear();
 
@@ -101,7 +100,7 @@ fn get_temperature_unit_from_user() -> TemperatureUnit {
             .read_line(&mut user_input)
             .expect("Failed to read line");
 
-        source_unit = match TemperatureUnit::from_str(&user_input.trim().to_uppercase()) {
+        let unit = match TemperatureUnit::from_str(&user_input.trim().to_uppercase()) {
             Ok(unit) => unit,
             Err(_) => {
                 println!("No temperature unit related to {user_input}. Options: C, F or K");
@@ -109,15 +108,13 @@ fn get_temperature_unit_from_user() -> TemperatureUnit {
             },
         };
 
-        break;
+        break unit;
     }
-    source_unit
 }
 
 fn get_temperature_from_user() -> Temperature {
-    let source_temp: Temperature;
-
     let mut user_input = String::new();
+
     loop {
         user_input.clear();
 
@@ -129,7 +126,7 @@ fn get_temperature_from_user() -> Temperature {
             .read_line(&mut user_input)
             .expect("Failed to read line");
 
-        source_temp = match Temperature::from_str(&user_input.trim().to_uppercase()) {
+        let temp = match Temperature::from_str(&user_input.trim().to_uppercase()) {
             Ok(unit) => unit,
             Err(_) => {
                 println!("{user_input} is not correctly formated. Options: number followed by C, F or K");
@@ -137,9 +134,8 @@ fn get_temperature_from_user() -> Temperature {
             },
         };
 
-        break;
+        break temp;
     }
-    source_temp
 }
 
 fn fahrenheit_to_celsius(temperature: Temperature) -> Temperature {
