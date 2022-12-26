@@ -1,7 +1,6 @@
 use std::io;
 use std::io::Write; //so I can use flush()
 use std::str::FromStr;
-use std::fmt::Display;
 
 #[derive(PartialEq)]
 enum TemperatureUnit {
